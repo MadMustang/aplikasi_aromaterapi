@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements HumidifierFragmen
 
     // MQTT global variables
     MQTTHandler mqttHandler;
-    String[] topics = {"switch"};
+    String[] topics = {"switch", "Sensor"};
 
     // Fragments
     final FragmentManager fm = getSupportFragmentManager();
@@ -120,7 +120,10 @@ public class MainActivity extends AppCompatActivity implements HumidifierFragmen
 
             if (topic.equals("switch")){
                 humidifierFragment.editText(message.toString());
-                Log.d("MQTT Handler", message.toString() + " received");
+                Log.d("MQTT Handler", message.toString() + " received from " + topic);
+            } else if (topic.equals("Sensor")) {
+                humidifierFragment.setWaterLevel(message.toString());
+                Log.d("MQTT Handler", message.toString() + " received from " + topic);
             }
 
         }

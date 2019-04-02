@@ -11,39 +11,91 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Water Level -->
+        <RelativeLayout
+            android:id="@+id/water_level_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
 
+            <com.john.waveview.WaveView
+                android:id="@+id/waterLevelWidget"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#EBF8FF"
+                app:above_wave_color="#0763F1"
+                app:blow_wave_color="#57C0EC"
+                app:progress="50"
+                app:wave_height="large"
+                app:wave_hz="normal"
+                app:wave_length="middle" />
+
+            <TextView
+                android:id="@+id/waterLevelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/waterLevelWidget"
+                android:layout_alignRight="@+id/waterLevelWidget"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="148dp"
+                android:layout_marginRight="148dp"
+                android:text="50%"
+                android:textSize="60sp" />
+
+        </RelativeLayout>
+
+        <!-- Status Text -->
         <TextView
             android:id="@+id/humidifier_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="8dp"
+            android:text="Humidifier:"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/water_level_layout"
+            app:layout_constraintVertical_bias="0.214" />
+
+        <TextView
+            android:id="@+id/humidifierStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Humidifier"
+            android:text="Off"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.137"
+            app:layout_constraintStart_toEndOf="@+id/humidifier_text"
+            app:layout_constraintTop_toBottomOf="@+id/water_level_layout"
+            app:layout_constraintVertical_bias="0.197" />
 
-        <Button
-            android:id="@+id/testButton"
+        <!-- On/Off Switch -->
+        <Switch
+            android:id="@+id/humidifierSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Button"
-            app:layout_constraintBottom_toTopOf="@+id/humidifier_text"
+            android:scaleX="2"
+            android:scaleY="2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/humidifier_text"
+            app:layout_constraintVertical_bias="0.097" />
 
 
     </android.support.constraint.ConstraintLayout>

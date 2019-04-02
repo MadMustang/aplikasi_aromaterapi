@@ -9,13 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import com.john.waveview.WaveView;
 
 public class HumidifierFragment extends Fragment {
 
     private FragmentHumidifierListener listener;
     private TextView statusText;
-    private Button testButton;
+    private TextView waterLevelText;
+    private Switch humidifierSwitch;
+    private WaveView waterLevelWidget;
 
     // Listener
     public interface FragmentHumidifierListener {
@@ -29,26 +35,49 @@ public class HumidifierFragment extends Fragment {
 
     }
 
-    // Receive data
+    // Set switch status
     public void editText(String text) {
         statusText.setText(text);
+    }
+
+    // Set water level
+    public void setWaterLevel(String level) {
+        int waterLevel = Integer.parseInt(level);
+        waterLevelWidget.setProgress(waterLevel);
+        waterLevelText.setText(level + "%");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        // Fragment view
         View view = inflater.inflate(R.layout.fragment_humidifier, container, false);
-        statusText = view.findViewById(R.id.humidifier_text);
-        //String myStr = getArguments().getString("data");
-        statusText.setText("Hello from Humidifier");
-        testButton = view.findViewById(R.id.testButton);
-        testButton.setOnClickListener(new View.OnClickListener() {
+
+        // Text
+        statusText = view.findViewById(R.id.humidifierStatusText);
+        waterLevelText = view.findViewById(R.id.waterLevelText);
+        statusText.setText("off");
+
+        // Water Level
+        waterLevelWidget = view.findViewById(R.id.waterLevelWidget);
+
+        // On/Off Switch
+        humidifierSwitch = view.findViewById(R.id.humidifierSwitch);
+        humidifierSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                listener.onInputHumidifierSent("switch", "Button Pressed");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                // if statements
+                if (isChecked) {
+                    listener.onInputHumidifierSent("switch", "on");
+                } else {
+                    listener.onInputHumidifierSent("switch", "off");
+                }
+
             }
         });
+
         return view;
     }
 
