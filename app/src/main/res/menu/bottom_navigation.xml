@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_humidifier"
+        android:icon="@drawable/aromatherapy_symbol"
+        android:title="@string/humidifier_menu_title"
+        />
+
+    <item
+        android:id="@+id/nav_led"
+        android:icon="@drawable/led_control_symbol"
+        android:title="@string/ledControl_menu_title"
+        />
+
+    <item
+        android:id="@+id/nav_sounds"
+        android:icon="@drawable/sound_control_symbol"
+        android:title="@string/sound_menu_title"
+        />
+
+</menu>
