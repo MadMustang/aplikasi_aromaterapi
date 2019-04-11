@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,9 +29,9 @@ public class HumidifierFragment extends Fragment {
 
     }
 
-    // Empty constructor
+    // Empty constructor (required)
     public HumidifierFragment() {
-
+        // Do not put anything in here
     }
 
     // Set switch status

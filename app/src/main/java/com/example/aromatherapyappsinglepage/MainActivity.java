@@ -17,14 +17,14 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class MainActivity extends AppCompatActivity implements HumidifierFragment.FragmentHumidifierListener {
+public class MainActivity extends AppCompatActivity
+        implements HumidifierFragment.FragmentHumidifierListener,
+                   LEDFragment.LEDFragmentListener {
 
-    // Widgets
-    Bundle bun = new Bundle();
 
     // MQTT global variables
     MQTTHandler mqttHandler;
-    String[] topics = {"switch", "Sensor"};
+    String[] topics = {"switch", "Sensor", "led/brightness/status"};
 
     // Fragments
     final FragmentManager fm = getSupportFragmentManager();
@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements HumidifierFragmen
     SoundFragment soundFragment;
     Fragment active;
 
-    // Fragments getID
-    //HumidifierFragment humFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements HumidifierFragmen
         fm.beginTransaction().add(R.id.main_container, ledFragment, "2").hide(ledFragment).commit();
         fm.beginTransaction().add(R.id.main_container, humidifierFragment, "1").commit();
 
-        // Get fragments by ID
-        //humFrag = (HumidifierFragment) fm.findFragmentById(R.id.fragment_humidifier);
 
     }
 
@@ -136,6 +132,11 @@ public class MainActivity extends AppCompatActivity implements HumidifierFragmen
 
     @Override
     public void onInputHumidifierSent(CharSequence topic, CharSequence message) {
+        mqttHandler.publish(topic.toString(), message.toString());
+    }
+
+    @Override
+    public void onLEDFragmentInputSent(CharSequence topic, CharSequence message) {
         mqttHandler.publish(topic.toString(), message.toString());
     }
 }
