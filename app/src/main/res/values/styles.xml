@@ -6,6 +6,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+
+    </style>
+
+    <!-- Text and Buttons -->
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Button">
+        <item name="fontFamily">sans-serif-light</item>
     </style>
 
 </resources>

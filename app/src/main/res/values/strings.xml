@@ -3,4 +3,5 @@
     <string name="humidifier_menu_title">Humidifier</string>
     <string name="ledControl_menu_title">LED</string>
     <string name="sound_menu_title">Sounds</string>
+
 </resources>

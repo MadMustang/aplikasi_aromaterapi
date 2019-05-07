@@ -38,6 +38,7 @@
                 android:layout_alignEnd="@+id/waterLevelWidget"
                 android:layout_alignRight="@+id/waterLevelWidget"
                 android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/waterLevelWidget"
                 android:layout_marginTop="110dp"
                 android:layout_marginEnd="148dp"
                 android:layout_marginRight="148dp"

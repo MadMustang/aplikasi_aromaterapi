@@ -24,7 +24,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13" />
+
+        <!-- Volume Rocker -->
+        <TextView
+            android:id="@+id/volume_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volume"
+            android:textSize="20sp"/>
+
+        <SeekBar
+            android:layout_width="278dp"
+            android:layout_height="20dp" />
 
     </android.support.constraint.ConstraintLayout>
 
