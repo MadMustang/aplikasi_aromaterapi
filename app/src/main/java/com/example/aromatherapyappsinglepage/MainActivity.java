@@ -1,5 +1,6 @@
 package com.example.aromatherapyappsinglepage;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -19,20 +20,29 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MainActivity extends AppCompatActivity
         implements HumidifierFragment.FragmentHumidifierListener,
-                   LEDFragment.LEDFragmentListener {
+                   LEDFragment.LEDFragmentListener,
+                    SoundFragment.FragmentSoundsListener {
 
 
     // MQTT global variables
-    MQTTHandler mqttHandler;
-    String[] topics = {"switch", "Sensor", "led/brightness/status"};
+    private MQTTHandler mqttHandler;
+    String[] topics = {"humidifier/status", "Sensor", "led/brightness/status"};
 
     // Fragments
     final FragmentManager fm = getSupportFragmentManager();
-    HumidifierFragment humidifierFragment;
-    LEDFragment ledFragment;
-    SoundFragment soundFragment;
-    Fragment active;
+    private HumidifierFragment humidifierFragment;
+    private LEDFragment ledFragment;
+    private SoundFragment soundFragment;
+    private StartScreen startScreen;
+    private Fragment active;
 
+    // Database
+    //private SQLDatabase dbSQL;
+
+    // Millisecond variables
+    private long responseStart;
+    private long responseEnd;
+    private long responseTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +58,8 @@ public class MainActivity extends AppCompatActivity
         humidifierFragment = new HumidifierFragment();
         ledFragment = new LEDFragment();
         soundFragment = new SoundFragment();
-        active = humidifierFragment;
+        startScreen = new StartScreen();
+        active = startScreen;
 
         // Set-up bottom navigation menu
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavMenu);
@@ -57,8 +68,11 @@ public class MainActivity extends AppCompatActivity
         // Start each fragments
         fm.beginTransaction().add(R.id.main_container, soundFragment, "3").hide(soundFragment).commit();
         fm.beginTransaction().add(R.id.main_container, ledFragment, "2").hide(ledFragment).commit();
-        fm.beginTransaction().add(R.id.main_container, humidifierFragment, "1").commit();
+        fm.beginTransaction().add(R.id.main_container, humidifierFragment, "1").hide(humidifierFragment).commit();
+        fm.beginTransaction().add(R.id.main_container, startScreen, "0").commit();
 
+        // Init db
+        //dbSQL = new SQLDatabase(this);
 
     }
 
@@ -114,8 +128,15 @@ public class MainActivity extends AppCompatActivity
             Log.d("MQTTClient", "New message from: " + topic);
             Log.d("MQTTClient", "Message content: " + message.toString());
 
-            if (topic.equals("switch")){
+            if (topic.equals("humidifier/status")){
                 humidifierFragment.editText(message.toString());
+
+                // Insert data into database
+                responseEnd = System.currentTimeMillis();
+                responseTime = responseEnd - responseStart;
+                //dbSQL.insertData("NaN", "NaN", (int)responseTime, 0, 0, 0);
+                Log.d("ResponseTime", Long.toString(responseTime));
+
                 Log.d("MQTT Handler", message.toString() + " received from " + topic);
             } else if (topic.equals("Sensor")) {
                 humidifierFragment.setWaterLevel(message.toString());
@@ -133,10 +154,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInputHumidifierSent(CharSequence topic, CharSequence message) {
         mqttHandler.publish(topic.toString(), message.toString());
+        //dbSQL.insertData("Jamban", "Terbang", 1, 2, 3, 4);
+        responseStart = System.currentTimeMillis();
     }
 
     @Override
     public void onLEDFragmentInputSent(CharSequence topic, CharSequence message) {
         mqttHandler.publish(topic.toString(), message.toString());
+    }
+
+    @Override
+    public void onInputSoundsSent(CharSequence topic, CharSequence message) {
+        mqttHandler.publish(topic.toString(), message.toString());
+    }
+
+    @Override
+    public void onGenerateCSV() {
+        Log.d("GenerateCSV", "Button Pressed");
+        //dbSQL.exportDB();
+        //dbSQL.deleteAll();
     }
 }

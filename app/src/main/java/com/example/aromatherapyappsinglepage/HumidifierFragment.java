@@ -69,9 +69,9 @@ public class HumidifierFragment extends Fragment {
 
                 // if statements
                 if (isChecked) {
-                    listener.onInputHumidifierSent("switch", "on");
+                    listener.onInputHumidifierSent("humidifier/switch", "on");
                 } else {
-                    listener.onInputHumidifierSent("switch", "off");
+                    listener.onInputHumidifierSent("humidifier/switch", "off");
                 }
 
             }

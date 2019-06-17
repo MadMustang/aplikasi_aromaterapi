@@ -26,7 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_centerHorizontal="false"
             android:switchPadding="80dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
 
         <!-- Brightness Bar -->
         <TextView
