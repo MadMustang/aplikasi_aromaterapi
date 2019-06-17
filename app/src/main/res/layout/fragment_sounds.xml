@@ -34,7 +34,7 @@
             android:layout_centerHorizontal="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="25dp"
             android:text="Play / pause"/>
 
         <!-- Button location -->
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/play_pause_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="35dp">
+            android:layout_marginTop="30dp">
 
             <!-- Music Buttons -->
             <Button
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rain"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:text="River"/>
 
             <Button
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="247dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/storm"
                 android:text="Fireplace"/>
 
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/river"
                 android:text="Forest"/>
 
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="242dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/fire"
                 android:text="Waterfall"/>
 
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/forest"
                 android:text="Night"/>
 
@@ -118,7 +118,7 @@
             app:layout_constraintTop_toBottomOf="@id/button_cluster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="Volume"
             android:textSize="20sp"/>
 
