@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     // MQTT global variables
     private MQTTHandler mqttHandler;
-    String[] topics = {"humidifier/status", "Sensor", "led/brightness/status"};
+    String[] topics = {"humidifier/status", "Sensor", "led/brightness/status", "led/colorstatus"};
 
     // Fragments
     final FragmentManager fm = getSupportFragmentManager();
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment active;
 
     // Database
-    //private SQLDatabase dbSQL;
+    private SQLDatabase dbSQL;
 
     // Millisecond variables
     private long responseStart;
@@ -141,6 +141,13 @@ public class MainActivity extends AppCompatActivity
             } else if (topic.equals("Sensor")) {
                 humidifierFragment.setWaterLevel(message.toString());
                 Log.d("MQTT Handler", message.toString() + " received from " + topic);
+            } else if(topic.equals("led/colorstatus")) {
+
+                // Insert data into database
+                responseEnd = System.currentTimeMillis();
+                responseTime = responseEnd - responseStart;
+                //dbSQL.insertData("NaN", "NaN", (int)responseTime, 0, 0, 0);
+                Log.d("ResponseTime", Long.toString(responseTime));
             }
 
         }
@@ -154,13 +161,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInputHumidifierSent(CharSequence topic, CharSequence message) {
         mqttHandler.publish(topic.toString(), message.toString());
-        //dbSQL.insertData("Jamban", "Terbang", 1, 2, 3, 4);
         responseStart = System.currentTimeMillis();
     }
 
     @Override
     public void onLEDFragmentInputSent(CharSequence topic, CharSequence message) {
         mqttHandler.publish(topic.toString(), message.toString());
+        responseStart = System.currentTimeMillis();
     }
 
     @Override

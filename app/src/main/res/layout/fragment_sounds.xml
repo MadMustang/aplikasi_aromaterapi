@@ -59,7 +59,7 @@
                 android:id="@+id/storm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="205dp"
                 android:text="Storm" />
 
             <Button
@@ -75,7 +75,7 @@
                 android:id="@+id/fire"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="247dp"
+                android:layout_marginLeft="203dp"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/storm"
                 android:text="Fireplace"/>
@@ -93,7 +93,7 @@
                 android:id="@+id/waterfall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="242dp"
+                android:layout_marginLeft="200dp"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/fire"
                 android:text="Waterfall"/>
@@ -139,7 +139,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/volume_bar"
+            app:layout_constraintTop_toBottomOf="@id/play_pause_button"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="Generate CSV"
             android:visibility="invisible"/>
